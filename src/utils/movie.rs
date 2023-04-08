@@ -11,6 +11,12 @@ pub struct Movie {
 
 }
 
+impl Movie {
+    pub fn get_image(&self) -> String {
+        format!("https://static.sratim.tv/movies/{}.jpg", self.id)
+    }
+}
+
 // The good response we want
 #[derive(Serialize, Deserialize, Debug)]
 struct Response {
@@ -23,6 +29,7 @@ impl fmt::Display for Movie {
         write!(f, "{}", self.name)
     }
 }
+
 
 pub async fn download(movie: &Movie) -> Result<(), Box<dyn std::error::Error>> {
     let pre_watch = reqwest::get("https://api.sratim.tv/movie/preWatch")
