@@ -1,6 +1,6 @@
 use std::{io, collections::HashMap, fmt};
 use serde::{Serialize, Deserialize};
-use mongodb::{Client, options::ClientOptions};
+use mongodb::Client;
 use mongodb::bson::{doc, Document};
 use futures::stream::TryStreamExt;
 use question::{Question, Answer};
