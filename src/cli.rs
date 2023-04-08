@@ -1,28 +1,17 @@
-use std::{io, collections::HashMap, fmt};
+use std::{io, collections::HashMap};
 use serde::{Serialize, Deserialize};
 use mongodb::Client;
 use mongodb::bson::{doc, Document};
 use futures::stream::TryStreamExt;
 use question::{Question, Answer};
 
-#[derive(Serialize, Deserialize, Debug)]
-struct Movie {
-    name: String,
-    id: String,
-
-}
+use crate::utils::movie;
 
 // Used to deserialize response after searching
 #[derive(Debug, Deserialize, Serialize)]
 struct ApiResponse {
     success: bool,
-    results: Vec<Movie>,
-}
-
-impl fmt::Display for Movie {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.name)
-    }
+    results: Vec<movie::Movie>,
 }
 
 
@@ -69,7 +58,7 @@ pub async fn search_for_movies(client: &reqwest::Client, mongo_client: &Client) 
         .await?;
 
     let res: ApiResponse = search.json().await?;
-    let movies: Vec<Movie> = res.results;
+    let movies: Vec<movie::Movie> = res.results;
 
     println!("Choose which movie you want to add to queue:");
     for i in 0..movies.len() {

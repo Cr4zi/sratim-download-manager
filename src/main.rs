@@ -1,7 +1,12 @@
 use mongodb::{Client, options::ClientOptions};
 use std::{process, io, env};
 
+pub mod utils{
+    pub mod movie;
+}
+
 mod cli;
+
 
 
 #[tokio::main]
