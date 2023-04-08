@@ -2,5 +2,3 @@
 #+DESCRIPTION: An org README file to explain about this project
 #+AUTHOR: Ori Mizrah
 #+DATE:<2023-04-08 Sat>
-
-* Sratim Download Manager
