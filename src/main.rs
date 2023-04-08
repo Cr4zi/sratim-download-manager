@@ -40,11 +40,11 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
                 3 => cli::delete_movie().await?,
                 4 => cli::empty_queue(&mongo_client).await?,
                 _ => break,
-        }
+            }
 
-        println!();
-        println!("---------------------------------");
-        println!();
+            println!();
+            println!("---------------------------------");
+            println!();
 
         }
     } else if args[1] == "downloader" {
