@@ -37,7 +37,13 @@ pub async fn download(movie: &Movie) -> Result<(), Box<dyn std::error::Error>> {
     let req = reqwest::get(format!("https://api.sratim.tv/movie/watch/id/{}/token/{}", movie.id, pre_watch))
         .await?;
 
-    let body: Response = req.json().await?;
+    let body: Response = match req.json().await {
+        Ok(body) => body,
+        Err(_) => {
+            panic!("Servers are full");
+        }
+    };
+
     let movie_link = body.watch.get(&480);
     let seret = reqwest::get(format!("https:{:?}", movie_link)).await?.text().await?;
     let mut out = File::create(format!("{}.mp4", movie.name)).expect("Failed to create file");
