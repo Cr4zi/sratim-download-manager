@@ -2,3 +2,5 @@
 #+DESCRIPTION: An org README file to explain about this project
 #+AUTHOR: Ori Mizrah
 #+DATE:<2023-04-08 Sat>
+
+ A program written in rust to manage your sratim.tv downloads
