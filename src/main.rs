@@ -1,3 +1,4 @@
+use downloader::download_movies;
 use mongodb::{Client, options::ClientOptions};
 use std::{process, io, env};
 
@@ -6,11 +7,14 @@ pub mod utils{
 }
 
 mod cli;
-
+mod downloader;
 
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
+    let client_options = ClientOptions::parse("mongodb://192.168.1.55").await?;
+    let mongo_client = Client::with_options(client_options)?;
+
     let client = reqwest::Client::new();
     let args: Vec<String> = env::args().collect();
 
@@ -28,9 +32,6 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
             println!("[3] Delete an existing movie");
             println!("[4] Empty queue");
             println!("[5] exit");
-
-            let client_options = ClientOptions::parse("mongodb://192.168.1.55").await?;
-            let mongo_client = Client::with_options(client_options)?;
 
             let mut choice = String::new();
 
@@ -54,7 +55,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         }
     } else if args[1] == "downloader" {
         // Downloader stuff
-        println!("...");
+        download_movies(&mongo_client).await?;
     } else {
         println!("please use `cargo run <cli/downloader>`");
     }
