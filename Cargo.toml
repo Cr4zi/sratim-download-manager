@@ -15,4 +15,4 @@ mongodb="2.4.0"
 futures = "0.3.28"
 regex = "1.7.3"
 question = "0.2.2"
-clap = "4.2.1"
+clap = { version="4.2.1", features=["derive"] }
