@@ -14,8 +14,10 @@ pub async fn download_movies(mongo_client: &Client) -> Result<(), Box<dyn std::e
         let mv = movie::Movie { name: mv.get("name").unwrap().to_string(), id: mv.get("id").unwrap().to_string() };
 
         println!("Downloading {}", &mv.name);
-        movie::download(&mv).await?;
-        println!("Finished to download movie");
+        match movie::download(&mv).await {
+            Ok(_) => println!("Finished to download movie"),
+            Err(err) => return Err(err),
+        }
 
         let add = doc! {
             "name": &mv.name,
