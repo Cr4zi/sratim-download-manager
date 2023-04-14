@@ -3,4 +3,7 @@
 #+AUTHOR: Ori Mizrah
 #+DATE:<2023-04-08 Sat>
 
- A program written in rust to manage your sratim.tv downloads
+* Disclaimer
+** This is for EDUCATIONAL AND EVALUATION PURPOSES ONLY.
+
+* A program written in rust to manage your sratim.tv downloads
