@@ -5,5 +5,5 @@
 
 A program written in rust to manage your sratim.tv downloads
 
-* Disclaimer
-** This is for EDUCATIONAL AND EVALUATION PURPOSES ONLY.
+** Disclaimer
+ This is for EDUCATIONAL AND EVALUATION PURPOSES ONLY.
