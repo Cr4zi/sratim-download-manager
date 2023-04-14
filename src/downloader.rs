@@ -19,6 +19,13 @@ pub async fn download_movies(mongo_client: &Client) -> Result<(), Box<dyn std::e
             Err(err) => return Err(err),
         }
 
+        let filter = doc! { "name": { "$regex": format!(".*{}.*", &mv.name.trim()), "$options": "i"}};
+        let mut cursor = downloaded.find(filter, None).await?;
+        while let Some(_) = cursor.try_next().await? {
+            return Err(Box::new(std::io::Error::new(std::io::ErrorKind::Other, "Movie already exists")))
+
+        }
+
         let add = doc! {
             "name": &mv.name,
             "id": &mv.id,
