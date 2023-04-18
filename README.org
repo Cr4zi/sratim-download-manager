@@ -5,5 +5,8 @@
 
 A program written in rust to manage your sratim.tv downloads
 
+** License
+Distributed under the GPL-3.0 License. See *LICENSE* for more information.
+
 ** Disclaimer
  This is for EDUCATIONAL AND EVALUATION PURPOSES ONLY.
